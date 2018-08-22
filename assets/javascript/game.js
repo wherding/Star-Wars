@@ -1,13 +1,41 @@
 
-
-$(document).ready(function(){
-
-    
-
-
 var loaded = 0;
 
 var imgs = [];
+$(document).ready(function(){
+    loadOnce();
+
+//begin loaded into my loadonce()
+/*
+//loop to populate selection div
+chars.forEach(x => {
+    var newImg = $("<img>" )//document.createElement("img");
+$(newImg).attr("src", x.img);// = chars[0].img;
+$(newImg).addClass(x.class)
+$(newImg).attr("data-name",x.name)
+$('.CharSelection1').append(newImg);
+imgs.push(newImg)
+});
+*/
+//end coppied into my load once
+/*
+var newImg = document.createElement("img");
+$(newImg).attr("src", chars[0].img);// = chars[0].img;
+$(newImg).addClass(chars[0].name)
+console.log(newImg);
+    $('.CharSelection').css("background-color","blue","font-color","white");
+  */ 
+ 
+//click event to select char.. need to improve so that it moves others to enemy div
+
+
+
+
+   // $('CharSelection').appendChild(char);
+return;
+});
+
+
 function loadOnce(){
     if(loaded <=0){
         //begin object array
@@ -31,35 +59,17 @@ function loadOnce(){
     });
     console.log("we are inside of the if statement of hte LoadOnce()");
     loaded++;
-}    
-};
-loadOnce();
-//begin loaded into my loadonce()
-/*
-//loop to populate selection div
-chars.forEach(x => {
-    var newImg = $("<img>" )//document.createElement("img");
-$(newImg).attr("src", x.img);// = chars[0].img;
-$(newImg).addClass(x.class)
-$(newImg).attr("data-name",x.name)
-$('.CharSelection1').append(newImg);
-imgs.push(newImg)
-});
-*/
-//end coppied into my load once
-/*
-var newImg = document.createElement("img");
-$(newImg).attr("src", chars[0].img);// = chars[0].img;
-$(newImg).addClass(chars[0].name)
-console.log(newImg);
-    $('.CharSelection').css("background-color","blue","font-color","white");
-  */ 
- $(".enemy").on("click", function(){
+}};
+
+
+
+
+$(document).on("click", ".enemy", function () {
     $(".Defend").append($(this));
     console.log("clicked my enemy class method " + $(this).attr("class"));
 });
-//click event to select char.. need to improve so that it moves others to enemy div
-$(".char").on("click", function(){
+
+$(document).on("click", ".char", function () {
     //$('img').remove(".Luke");
     var name = $(this).attr("data-name");
     //console.log("this is my local name var in my click" + name);
@@ -72,7 +82,7 @@ $(".char").on("click", function(){
         }
         else{
             $(x).addClass("enemy");
-            $(x).attr("data-enemy","enemy")
+            $(x).attr("data-enemy","enemy");
             $(x).removeClass("char");
            // console.log(" else x classes " +$(x).attr("class"));
             $('.enemies').append($(x));
@@ -89,14 +99,6 @@ $(".char").on("click", function(){
     return;
 
 });//end .charClick()
-
-
-   // $('CharSelection').appendChild(char);
-
-});
-
-
-
 
 
 
