@@ -3,3 +3,11 @@ img{
    float: left;
     padding: 10px;
 }
+
+[data-name]{
+    position: relative;
+    border: 5px solid black;
+}
+.enemy{
+    border-color: red;
+}
