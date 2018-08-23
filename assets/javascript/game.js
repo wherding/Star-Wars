@@ -6,6 +6,8 @@ var defender;
 var you;
 $(document).ready(function(){
     loadOnce();
+    var damage=0;
+    var hp=0;
 
 
 
@@ -110,10 +112,23 @@ $(document).on("click", ".char", function () {
 
 //begin attack
 $(".Attack").on("click", function(){
+   var getInt = 0;
+   getInt = $(".char").attr("data-damage");
+   getInt= parseInt(getInt);
+   hp = $(defender).children(".hp").text()
+   hp = parseInt(hp);
+    damage = damage + getInt;
+    hp = hp - damage;
+    $(defender).children(".hp").text(hp)
+    console.log("this is damage+damage+$ " + damage);
+    console.log("this is hp-damage+$ " + hp);
+
     console.log("object you in atack method " + $(you).children("p.hp").text()); 
     console.log($(you).children("p.hp").text());
     console.log($(you).parent());
     console.log("object defender in atack method " + $(defender).children(".hp").text());
+   //the line below this logs char damage.
+    console.log($(".char").attr("data-damage"));
     
 
 })
