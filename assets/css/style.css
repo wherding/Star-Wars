@@ -11,3 +11,9 @@ img{
 .enemy{
     border-color: red;
 }
+.char{
+    border-color: green;
+}
+.test{
+    background-color: red;
+}

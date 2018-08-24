@@ -8,6 +8,8 @@ $(document).ready(function(){
     loadOnce();
     var damage=0;
     var hp=0;
+    var myhp =0; 
+    var counter =0;
 
 
 
@@ -16,9 +18,9 @@ function loadOnce(){
         //begin object array
         var chars = [
             obi = {name:"obi-won Kenobi", img:"./assets/img/obi.jpg", hp:"120",damage:"8",counter:"25"},
-            luke = {name:"Luke Skywalker", img:"./assets/img/Luke.png", hp:"200",damage:"8",counter:"25"},
-            sid = {name:"Darth Sidious", img:"./assets/img/sidious.png",hp:"150",damage:"8",counter:"25"},
-            mal = {name:"Darth Maul",  img:"./assets/img/Maul.jpeg",hp:"180",damage:"8",counter:"25"}
+            luke = {name:"Luke Skywalker", img:"./assets/img/Luke.png", hp:"200",damage:"12",counter:"25"},
+            sid = {name:"Darth Sidious", img:"./assets/img/sidious.png",hp:"150",damage:"6",counter:"25"},
+            mal = {name:"Darth Maul",  img:"./assets/img/Maul.jpeg",hp:"180",damage:"7",counter:"25"}
         ]
 
         //end object array
@@ -38,6 +40,7 @@ function loadOnce(){
     $(newImg).addClass("card-img-top")
     $(newDIv).attr("data-name",x.name)
     $(newDIv).attr("data-damage",x.damage)
+    $(newDIv).attr("data-counter",x.counter)
     var overlayDiv = $("<div>");
     $(overlayDiv).addClass("card-img-overlay");
     var overlayText = $("<h4>");
@@ -63,7 +66,7 @@ function loadOnce(){
 
 
 //start pick defender method
-var die = $(document).on("click", ".enemy", function () {
+$(document).on("click", ".enemy", function () {
     $(".Defend").append($(this));
     $(this).addClass("defender");
     defender =  $(event.target)
@@ -111,27 +114,52 @@ $(document).on("click", ".char", function () {
 });//end .charClick()
 
 //begin attack
-$(".Attack").on("click", function(){
-   var getInt = 0;
+$(document).on("click",".Attack", function(){
+   //get in from string for damage. 
+    var getInt = 0;
    getInt = $(".char").attr("data-damage");
    getInt= parseInt(getInt);
+//get int form defender for hp
    hp = $(defender).children(".hp").text()
    hp = parseInt(hp);
     damage = damage + getInt;
     hp = hp - damage;
+    //update defender damage. 
     $(defender).children(".hp").text(hp)
+    //get defender counter
+    counter = $(".defender").attr("data-counter");
+    counter = parseInt(counter);
+    myhp = $(you).children("p.hp").text();
+    myhp = parseInt(myhp);
+    myhp = myhp - counter;
+    $(you).children("p.hp").text(myhp);
+   //well the line below didnt work quite like i thought. 
+    // $('.char').load(document.URL +  ' .char');
+   // $(document).children(".char").children(".hp").text(myhp);
+    //console.log( $(you).children("p").text(myhp));
+   // $(you).children("p.hp").text(myhp);
+    //$(".char").children("h4").html(myhp);
+    //$(".your").addClass("test");
+    //$(".char").children(".hp").text(myhp);
+    console.log("this is my char hp "+ myhp);
     console.log("this is damage+damage+$ " + damage);
     console.log("this is hp-damage+$ " + hp);
 
-    console.log("object you in atack method " + $(you).children("p.hp").text()); 
-    console.log($(you).children("p.hp").text());
-    console.log($(you).parent());
-    console.log("object defender in atack method " + $(defender).children(".hp").text());
+  //  console.log("object you in atack method " + $(you).children("p.hp").text()); 
+   // console.log($(you).children("p.hp").text());
+   // console.log($(you).parent());
+   // console.log("object defender in atack method " + $(defender).children(".hp").text());
    //the line below this logs char damage.
-    console.log($(".char").attr("data-damage"));
-    
+  //  console.log($(".char").attr("data-damage"));
+    if (hp<=0) {
+        die();
+    }
 
 })
+var die = function(){
+    $(".Defend").empty();
+
+}//end die function
 
 });
 
