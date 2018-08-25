@@ -17,3 +17,10 @@ img{
 .test{
     background-color: red;
 }
+body{
+    background-image: url("../img/X-wing_Fathead.png");
+    
+}
+.card{
+    margin: 2%;
+}

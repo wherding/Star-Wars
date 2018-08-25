@@ -133,33 +133,30 @@ $(document).on("click",".Attack", function(){
     myhp = parseInt(myhp);
     myhp = myhp - counter;
     $(you).children("p.hp").text(myhp);
-   //well the line below didnt work quite like i thought. 
-    // $('.char').load(document.URL +  ' .char');
-   // $(document).children(".char").children(".hp").text(myhp);
-    //console.log( $(you).children("p").text(myhp));
-   // $(you).children("p.hp").text(myhp);
-    //$(".char").children("h4").html(myhp);
-    //$(".your").addClass("test");
-    //$(".char").children(".hp").text(myhp);
     console.log("this is my char hp "+ myhp);
     console.log("this is damage+damage+$ " + damage);
     console.log("this is hp-damage+$ " + hp);
 
-  //  console.log("object you in atack method " + $(you).children("p.hp").text()); 
-   // console.log($(you).children("p.hp").text());
-   // console.log($(you).parent());
-   // console.log("object defender in atack method " + $(defender).children(".hp").text());
-   //the line below this logs char damage.
-  //  console.log($(".char").attr("data-damage"));
+  
     if (hp<=0) {
-        die();
+        
+        setTimeout( die(), 2000);
+    }
+    if(myhp<=0)
+    {
+        loser();
     }
 
 })
 var die = function(){
     $(".Defend").empty();
 
+    setTimeout( alert("nice kill!"), 1000);
+
 }//end die function
+var loser = function(){
+    alert("loser!")
+}
 
 });
 
